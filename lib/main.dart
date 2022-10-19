@@ -58,7 +58,7 @@ class Showcase extends StatelessWidget {
               name: 'HitsSearcher',
               useCases: [
                 WidgetbookUseCase(
-                    name: 'Default', builder: (_) => HitsSearcherCase()),
+                    name: 'Search Box - Hits List', builder: (_) => HitsSearcherCase()),
               ],
               isExpanded: true,
             )
@@ -72,7 +72,7 @@ class Showcase extends StatelessWidget {
               name: 'FilterState',
               useCases: [
                 WidgetbookUseCase(
-                    name: 'Default', builder: (_) => FilterStateCase())
+                    name: 'Static Filters', builder: (_) => FilterStateCase())
               ],
               isExpanded: true,
             ),
@@ -80,7 +80,7 @@ class Showcase extends StatelessWidget {
               name: 'FacetList',
               useCases: [
                 WidgetbookUseCase(
-                    name: 'Default', builder: (_) => FacetListCase())
+                    name: 'Multiple Facet Lists', builder: (_) => FacetListCase())
               ],
               isExpanded: true,
             )
