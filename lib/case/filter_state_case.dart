@@ -1,6 +1,7 @@
 import 'package:algolia_helper_flutter/algolia_helper_flutter.dart';
 import 'package:flutter/material.dart';
 
+import 'filters/filter_debug.dart';
 import 'ui/search_box.dart';
 import 'ui/search_hits.dart';
 
@@ -23,7 +24,12 @@ class FilterStateCase extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: SearchBox(onQuery: searcher.query)),
-      body: SearchHits(responses: searcher.responses),
+      body: Column(
+        children: [
+          FilterDebug(filterState, clearable: false),
+          Expanded(child: SearchHits(responses: searcher.responses)),
+        ],
+      ),
     );
   }
 }

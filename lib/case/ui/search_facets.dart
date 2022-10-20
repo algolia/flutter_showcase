@@ -44,7 +44,10 @@ class SearchFacets extends StatelessWidget {
                   SearchFacetRow(facet: facets[index], onClick: onClick),
             );
           } else {
-            return const LinearProgressIndicator();
+            return const Align(
+              alignment: Alignment.topCenter,
+              child: LinearProgressIndicator(),
+            );
           }
         },
       ),

@@ -12,6 +12,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   algolia_helper_flutter: ^0.2.0
   widgetbook: ^2.4.1
+  collection: ^1.16.0
 
 dev_dependencies:
   flutter_test:

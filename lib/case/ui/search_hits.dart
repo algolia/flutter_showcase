@@ -19,7 +19,10 @@ class SearchHits extends StatelessWidget {
             itemBuilder: (context, index) => SearchHitRow(hit: hits[index]),
           );
         } else {
-          return const LinearProgressIndicator();
+          return const Align(
+            alignment: Alignment.topCenter,
+            child: CircularProgressIndicator(),
+          );
         }
       },
     );
