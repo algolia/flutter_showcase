@@ -20,7 +20,7 @@ class SearchFilterChips extends StatelessWidget {
               return Wrap(
                 spacing: 6.0,
                 runSpacing: 6.0,
-                children: [..._filterChipOf(filters)],
+                children: [..._filterChipOf(context, filters)],
               );
             } else {
               return Container();
@@ -29,7 +29,7 @@ class SearchFilterChips extends StatelessWidget {
     );
   }
 
-  List<Widget> _filterChipOf(Filters filters) {
+  List<Widget> _filterChipOf(BuildContext context, Filters filters) {
     final chips = <Widget>[];
     filters.toFilterGroups().forEachIndexed((index, filterGroup) {
       for (var filter in filterGroup) {
@@ -38,7 +38,10 @@ class SearchFilterChips extends StatelessWidget {
           shape: const StadiumBorder(side: BorderSide()),
           label: Text(
             _chipLabelOf(filter),
-            style: TextStyle(color: _categoryColor(index)),
+            style: Theme.of(context)
+                .textTheme
+                .bodyText1
+                ?.copyWith(color: _categoryColor(index)),
           ),
           onSelected: (bool value) {
             if (clearable) {
