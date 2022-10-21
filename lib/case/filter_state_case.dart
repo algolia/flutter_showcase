@@ -1,7 +1,7 @@
 import 'package:algolia_helper_flutter/algolia_helper_flutter.dart';
 import 'package:flutter/material.dart';
 
-import 'filters/filter_debug.dart';
+import 'ui/search_filter_chips.dart';
 import 'ui/search_box.dart';
 import 'ui/search_hits.dart';
 
@@ -25,8 +25,9 @@ class FilterStateCase extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: SearchBox(onQuery: searcher.query)),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FilterDebug(filterState, clearable: false),
+          SearchFilterChips(filterState, clearable: false),
           Expanded(child: SearchHits(responses: searcher.responses)),
         ],
       ),

@@ -27,13 +27,13 @@ class AppColors {
 class AppTheme {
   static ThemeData light() {
     return ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Hind',
-        appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.moon,
-          foregroundColor: AppColors.nebulaBlue,
-        ),
-        scaffoldBackgroundColor: AppColors.moon,
+      primarySwatch: Colors.blue,
+      fontFamily: 'Hind',
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.moon,
+        foregroundColor: AppColors.nebulaBlue,
+      ),
+      scaffoldBackgroundColor: AppColors.moon,
     );
   }
 }
