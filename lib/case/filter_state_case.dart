@@ -15,7 +15,7 @@ class FilterStateCase extends StatelessWidget {
     Filter.comparison('rating', NumericOperator.greater, 3),
   ];
 
-  late final filterState = FilterState()..add(groupID, filters);
+  late final filterState = FilterState()..add(groupID, {filters[0]});
 
   late final searcher = HitsSearcher(
     applicationID: 'latency',
