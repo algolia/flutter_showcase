@@ -1,7 +1,7 @@
 import 'package:algolia_helper_flutter/algolia_helper_flutter.dart';
 import 'package:flutter/material.dart';
 
-import 'ui/search_filter_chips.dart';
+import 'ui/search_input_chips.dart';
 import 'ui/search_box.dart';
 import 'ui/search_facets.dart';
 import 'ui/search_hits.dart';
@@ -57,7 +57,7 @@ class FacetListCase extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SearchFilterChips(filterState),
+          SearchInputChips(filterState),
           Expanded(child: SearchHits(responses: searcher.responses)),
         ],
       ),
