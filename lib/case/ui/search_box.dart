@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgetbook/widgetbook.dart';
 
 import 'styling.dart';
 
@@ -35,7 +36,10 @@ class _SearchBoxState extends State<SearchBox> {
           controller: controller,
           decoration: InputDecoration(
             prefixIcon: const Icon(Icons.search, color: AppColors.nebulaBlue),
-            hintText: 'Search here...',
+            hintText: context.knobs.text(
+              label: 'Hint text',
+              initialValue: 'Search here...',
+            ),
             hintStyle: const TextStyle(color: AppColors.lavenderGray),
             border: InputBorder.none,
             suffixIcon: controller.text.isEmpty
