@@ -35,7 +35,8 @@ class _SearchBoxState extends State<SearchBox> {
           controller: controller,
           decoration: InputDecoration(
             prefixIcon: const Icon(Icons.search, color: AppColors.nebulaBlue),
-            hintText: 'Search for products',
+            hintText: 'Search here...',
+            hintStyle: const TextStyle(color: AppColors.lavenderGray),
             border: InputBorder.none,
             suffixIcon: controller.text.isEmpty
                 ? null

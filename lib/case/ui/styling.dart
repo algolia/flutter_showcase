@@ -23,7 +23,11 @@ class AppColors {
   // Venus
   static const venus = Color(0xFFAE3E88);
 
-  static const coolGrey = Color(0XFF848AB8);
+  static const coolGrey = Color(0xFF848AB8);
+
+  static const lavenderGray = Color(0xFFC4C8D8);
+
+  AppColors._();
 }
 
 class AppTheme {
