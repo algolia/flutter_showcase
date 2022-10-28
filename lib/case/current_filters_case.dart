@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'extensions.dart';
 import 'ui/search_ui.dart';
 
-class FacetListCase extends StatelessWidget {
-  FacetListCase({super.key});
+class CurrentFiltersCase extends StatelessWidget {
+  CurrentFiltersCase({super.key});
 
   final filterState = FilterState();
 
@@ -21,37 +21,17 @@ class FacetListCase extends StatelessWidget {
     attribute: 'categories',
   );
 
-  late final brandFacets = FacetList(
-    searcher: searcher,
-    filterState: filterState,
-    attribute: 'brand',
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: SearchBox(onQuery: searcher.query)),
       drawer: Drawer(
-          child: Column(
-        children: [
-          Expanded(
-              flex: 1,
-              child: Card(
-                  child: SearchFacets(
-                title: 'Categories',
-                facets: categoriesFacets.facets,
-                onClick: categoriesFacets.toggle,
-              ))),
-          Expanded(
-              flex: 1,
-              child: Card(
-                  child: SearchFacets(
-                title: 'Brands',
-                facets: brandFacets.facets,
-                onClick: brandFacets.toggle,
-              ))),
-        ],
-      )),
+          child: Card(
+              child: SearchFacets(
+            title: 'Categories',
+            facets: categoriesFacets.facets,
+            onClick: categoriesFacets.toggle,
+          ))),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

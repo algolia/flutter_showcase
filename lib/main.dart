@@ -6,15 +6,20 @@
 
 import 'dart:core';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_showcase/case/facet_list_case.dart';
-import 'package:flutter_showcase/case/filter_state_case.dart';
-import 'package:flutter_showcase/case/ui/styling.dart';
+import 'package:logging/logging.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-import 'case/hits_searcher_case.dart';
+import 'case/search_cases.dart';
+import 'case/ui/styling.dart';
 
 void main() {
+  if (kDebugMode) {
+    Logger.root.level = Level.ALL;
+    Logger.root.onRecord.listen((record) =>
+        print('${record.level.name}: ${record.time}: ${record.message}'));
+  }
   runApp(const Showcase());
 }
 
@@ -58,7 +63,8 @@ class Showcase extends StatelessWidget {
               name: 'HitsSearcher',
               useCases: [
                 WidgetbookUseCase(
-                    name: 'Search Box - Hits List', builder: (_) => HitsSearcherCase()),
+                    name: 'search box & hits list',
+                    builder: (_) => HitsSearcherCase()),
               ],
               isExpanded: true,
             )
@@ -69,23 +75,79 @@ class Showcase extends StatelessWidget {
           name: 'Refinements',
           widgets: [
             WidgetbookComponent(
-              name: 'FilterState',
+              name: 'Facet List',
               useCases: [
                 WidgetbookUseCase(
-                    name: 'Static Filters', builder: (_) => FilterStateCase())
+                  name: 'multiple facet lists',
+                  builder: (_) => FacetListCase(),
+                )
               ],
               isExpanded: true,
             ),
             WidgetbookComponent(
-              name: 'FacetList',
+              name: 'Filter List',
               useCases: [
                 WidgetbookUseCase(
-                    name: 'Multiple Facet Lists', builder: (_) => FacetListCase())
+                  name: 'static filters',
+                  builder: (_) => FilterListCase(),
+                )
               ],
               isExpanded: true,
-            )
+            ),
+            WidgetbookComponent(
+              name: 'Filter Toggle',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'facet Toggle',
+                  builder: (_) => FilterToggleCase(),
+                )
+              ],
+              isExpanded: true,
+            ),
+            WidgetbookComponent(
+              name: 'Clear Filters',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'clear All',
+                  builder: (_) => ClearFilterCase(),
+                )
+              ],
+              isExpanded: true,
+            ),
+            WidgetbookComponent(
+              name: 'Current Filters',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'current facets',
+                  builder: (_) => CurrentFiltersCase(),
+                )
+              ],
+              isExpanded: true,
+            ),
           ],
         ),
+        WidgetbookCategory(name: 'Metadata', widgets: [
+          WidgetbookComponent(
+              name: 'Stats',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'hits & processing',
+                  builder: (_) => StatsCase(),
+                ),
+              ],
+              isExpanded: true)
+        ]),
+        WidgetbookCategory(name: 'Sorting', widgets: [
+          WidgetbookComponent(
+              name: 'Sort By',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'default',
+                  builder: (_) => SortByCase(),
+                ),
+              ],
+              isExpanded: true)
+        ])
       ],
     );
   }

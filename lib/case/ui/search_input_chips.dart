@@ -1,8 +1,8 @@
 import 'package:algolia_helper_flutter/algolia_helper_flutter.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_showcase/case/ui/filters_extensions.dart';
-import 'package:flutter_showcase/case/ui/styling.dart';
+
+import 'filters_extensions.dart';
+import 'styling.dart';
 
 class SearchInputChips extends StatelessWidget {
   const SearchInputChips(this.filterState, {super.key, this.clearable = true});

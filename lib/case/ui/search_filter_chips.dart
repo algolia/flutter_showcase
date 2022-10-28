@@ -1,7 +1,7 @@
 import 'package:algolia_helper_flutter/algolia_helper_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_showcase/case/ui/filters_extensions.dart';
-import 'package:flutter_showcase/case/ui/styling.dart';
+
+import 'search_filter_chip.dart';
 
 class SearchFilterChips extends StatelessWidget {
   const SearchFilterChips(this.filterState, this.groupID, this.filters,
@@ -10,7 +10,7 @@ class SearchFilterChips extends StatelessWidget {
   final FilterState filterState;
   final bool clearable;
   final FilterGroupID groupID;
-  final List<Filter> filters;
+  final Iterable<Filter> filters;
 
   @override
   Widget build(BuildContext context) {
@@ -37,23 +37,12 @@ class SearchFilterChips extends StatelessWidget {
     final chips = <Widget>[];
     var filterGroups = appliedFilters.toFilterGroups().expand((group) => group);
     for (var filter in filters) {
-      final chip = FilterChip(
-        backgroundColor: AppColors.proton,
-        selectedColor: AppColors.coolGrey,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(4))),
-        label: Text(
-          filter.toLabel(),
-          style: Theme.of(context)
-              .textTheme
-              .bodyText1
-              ?.copyWith(color: AppColors.white),
-        ),
+      final chip = SearchFilterChip(
+        filter: filter,
+        selected: filterGroups.contains(filter),
         onSelected: (selected) => selected
             ? filterState.add(groupID, {filter})
             : filterState.remove(groupID, {filter}),
-        selected: filterGroups.contains(filter),
-        checkmarkColor: AppColors.white,
       );
       chips.add(chip);
     }

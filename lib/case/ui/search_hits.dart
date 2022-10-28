@@ -1,10 +1,12 @@
 import 'package:algolia_helper_flutter/algolia_helper_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_showcase/case/ui/styling.dart';
 
 class SearchHits extends StatelessWidget {
-  const SearchHits({super.key, required this.responses});
+  const SearchHits(this.responses, {super.key, this.onRetry});
 
   final Stream<SearchResponse> responses;
+  final VoidCallback? onRetry;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,11 @@ class SearchHits extends StatelessWidget {
           return ListView.builder(
             itemCount: hits.length,
             itemBuilder: (context, index) => SearchHitRow(hit: hits[index]),
+          );
+        } else if (snapshot.hasError) {
+          return Align(
+            alignment: Alignment.center,
+            child: NoResults(onRetry: onRetry),
           );
         } else {
           return const Align(
@@ -69,6 +76,40 @@ class SearchHitRow extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class NoResults extends StatelessWidget {
+  const NoResults({Key? key, required this.onRetry}) : super(key: key);
+
+  final VoidCallback? onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.wifi_off,
+          size: 48,
+          color: AppColors.coolGrey,
+        ),
+        Text(
+          "Can't load search results",
+          style: Theme.of(context)
+              .textTheme
+              .subtitle1
+              ?.copyWith(color: AppColors.coolGrey),
+        ),
+        TextButton(
+            onPressed: onRetry,
+            child: Text('Try Again',
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle1
+                    ?.copyWith(color: AppColors.nebulaBlue)))
+      ],
     );
   }
 }

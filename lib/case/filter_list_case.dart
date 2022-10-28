@@ -1,12 +1,11 @@
 import 'package:algolia_helper_flutter/algolia_helper_flutter.dart';
 import 'package:flutter/material.dart';
 
-import 'ui/search_box.dart';
-import 'ui/search_filter_chips.dart';
-import 'ui/search_hits.dart';
+import 'extensions.dart';
+import 'ui/search_ui.dart';
 
-class FilterStateCase extends StatelessWidget {
-  FilterStateCase({super.key});
+class FilterListCase extends StatelessWidget {
+  FilterListCase({super.key});
 
   final groupID = const FilterGroupID('products');
   final filters = [
@@ -30,9 +29,9 @@ class FilterStateCase extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SearchFilterChips(filterState, groupID, filters,
-              clearable: false),
-          Expanded(child: SearchHits(responses: searcher.responses)),
+          SearchFilterChips(filterState, groupID, filters, clearable: false),
+          Expanded(
+              child: SearchHits(searcher.responses, onRetry: searcher.retry)),
         ],
       ),
     );

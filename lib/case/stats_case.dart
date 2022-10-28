@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'extensions.dart';
 import 'ui/search_ui.dart';
 
-class HitsSearcherCase extends StatelessWidget {
-  HitsSearcherCase({super.key});
+class StatsCase extends StatelessWidget {
+  StatsCase({super.key});
 
   final searcher = HitsSearcher(
     applicationID: 'latency',
@@ -17,9 +17,13 @@ class HitsSearcherCase extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: SearchBox(onQuery: searcher.query)),
-      body: SearchHits(
-        searcher.responses,
-        onRetry: searcher.retry,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SearchStats(searcher.responses),
+          Expanded(
+              child: SearchHits(searcher.responses, onRetry: searcher.retry)),
+        ],
       ),
     );
   }
